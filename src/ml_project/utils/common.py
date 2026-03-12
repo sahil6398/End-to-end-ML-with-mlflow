@@ -1,5 +1,5 @@
 import os
-import box.exceptions import BoxvalueError
+from box.exceptions import BoxValueError
 import yaml
 from ml_project import logger
 import json
@@ -8,6 +8,7 @@ from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
+from typing import List
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -27,13 +28,13 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
             content = yaml.safe_load(yaml_file)
             logger.info(f"yaml file: {path_to_yaml} loaded successfully")
             return ConfigBox(content)
-    except BoxvalueError:
-        raise ValueError(f"yaml file: {path_to_yaml} is empty")
+    except BoxValueError:
+        raise ValueError("yaml file is empty")
     except Exception as e:
         raise e
     
 @ensure_annotations
-def create_directories(path_to_directories: list[Path], verbose=True):
+def create_directories(path_to_directories: List, verbose=True):
     for path in path_to_directories:
         os.makedirs(path, exist_ok=True)
         if verbose:

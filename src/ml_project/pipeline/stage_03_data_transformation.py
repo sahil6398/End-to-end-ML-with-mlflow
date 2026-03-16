@@ -1,7 +1,6 @@
 from ml_project.components.data_transformation import DataTransformation
 from ml_project.config.configuration import ConfigurationManager
 from ml_project import logger
-from ml_project.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 
 STAGE_NAME = "Data Transformation Stage"
 
